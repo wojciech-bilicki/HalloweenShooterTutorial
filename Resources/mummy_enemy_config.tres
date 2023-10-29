@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=5 format=3 uid="uid://foju4405gl87"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_config.gd" id="1_r1sb5"]
+[ext_resource type="Shape2D" uid="uid://bnv85j7a85v81" path="res://Resources/CollisionShapes/mummy_collision_shape.tres" id="1_rfljk"]
+[ext_resource type="Shape2D" uid="uid://bvdoxv1ew6uk0" path="res://Resources/CollisionShapes/mummy_projectile_collision_shape.tres" id="2_6gggb"]
+[ext_resource type="Texture2D" uid="uid://bnw8m66nnvml1" path="res://Assets/Enemies/EnemyProjectiles/bandage.png" id="3_7dbhp"]
+
+[resource]
+script = ExtResource("1_r1sb5")
+projectile_collision_shape = ExtResource("2_6gggb")
+projectile_texture = ExtResource("3_7dbhp")
+enemy_name = "mummy"
+enemy_collision_shape = ExtResource("1_rfljk")

@@ -1,0 +1,118 @@
+[gd_scene load_steps=17 format=3 uid="uid://jemkg1xs1aw4"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_okpwi"]
+[ext_resource type="Texture2D" uid="uid://bctpeupeq763a" path="res://Assets/Enemies/Devil/DevilIdle.png" id="1_s1oya"]
+[ext_resource type="Texture2D" uid="uid://b2uelg3fanb7" path="res://Assets/Enemies/Devil/DevilShoot.png" id="2_d583c"]
+[ext_resource type="Texture2D" uid="uid://dlc65t857t88g" path="res://Assets/Enemies/SmokeFX/FX001_01.png" id="3_3202n"]
+[ext_resource type="Texture2D" uid="uid://cmb3ayrwdvv1k" path="res://Assets/Enemies/SmokeFX/FX001_02.png" id="4_laq0m"]
+[ext_resource type="Texture2D" uid="uid://c5di3uhs7qu2a" path="res://Assets/Enemies/SmokeFX/FX001_03.png" id="5_c7uhu"]
+[ext_resource type="Texture2D" uid="uid://ddi0prjmcnlxx" path="res://Assets/Enemies/SmokeFX/FX001_04.png" id="6_litmb"]
+[ext_resource type="Texture2D" uid="uid://cktfakakkaia3" path="res://Assets/Enemies/SmokeFX/FX001_05.png" id="7_30t5d"]
+[ext_resource type="Texture2D" uid="uid://cpqqankvfcfpb" path="res://Assets/Enemies/Mummy/MummyIdle.png" id="8_oo204"]
+[ext_resource type="Texture2D" uid="uid://bor84gso6c3ed" path="res://Assets/Enemies/Mummy/MummyShooting.png" id="9_33q6g"]
+[ext_resource type="Texture2D" uid="uid://cximiq1agap3w" path="res://Assets/Enemies/Skeleton/SkeletonIdle.png" id="10_oeaop"]
+[ext_resource type="Texture2D" uid="uid://cu2wocwlgwecx" path="res://Assets/Enemies/Skeleton/SkeletonShooting.png" id="11_5nhmq"]
+[ext_resource type="Script" path="res://Scripts/random_timer.gd" id="12_mgx1q"]
+[ext_resource type="Script" path="res://Scripts/enemy_shooting_system.gd" id="13_13len"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqt36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s1oya")
+}],
+"loop": true,
+"name": &"devil_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d583c")
+}],
+"loop": false,
+"name": &"devil_shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3202n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_laq0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c7uhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_litmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_30t5d")
+}],
+"loop": false,
+"name": &"die",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_oo204")
+}],
+"loop": true,
+"name": &"mummy_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_33q6g")
+}],
+"loop": false,
+"name": &"mummy_shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_oeaop")
+}],
+"loop": true,
+"name": &"skeleton_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_5nhmq")
+}],
+"loop": false,
+"name": &"skeleton_shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvuw8"]
+size = Vector2(66, 135)
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_okpwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_aqt36")
+animation = &"skeleton_shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 2.5)
+shape = SubResource("RectangleShape2D_nvuw8")
+
+[node name="ShootingSystem" type="Marker2D" parent="."]
+position = Vector2(-99, 0)
+script = ExtResource("13_13len")
+
+[node name="Timer" type="Timer" parent="ShootingSystem"]
+one_shot = true
+script = ExtResource("12_mgx1q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="ShootingSystem/Timer" to="ShootingSystem" method="_on_timer_timeout"]

@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://hypoexha233e"]
+
+[ext_resource type="Texture2D" uid="uid://bloxp2shvndpx" path="res://Assets/Backgrounds/Skybox Castle outside.png" id="1_0u8od"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_cebj7"]
+[ext_resource type="FontFile" uid="uid://d370phyelf2v8" path="res://Assets/font/font.otf" id="2_3f0y1"]
+[ext_resource type="Texture2D" uid="uid://seuol3n7jldw" path="res://Assets/UIElements/Select.png" id="2_d2ds8"]
+[ext_resource type="Texture2D" uid="uid://dqfqcgvyrrr2s" path="res://Assets/UIElements/PlayerPortaits/Frankie.png" id="3_hpusj"]
+[ext_resource type="Texture2D" uid="uid://ptclhiyr1s31" path="res://Assets/UIElements/PlayerPortaits/Wolfie.png" id="4_o81sw"]
+[ext_resource type="Texture2D" uid="uid://jiggefrmbvvg" path="res://Assets/UIElements/PlayerPortaits/Witch.png" id="5_guef8"]
+[ext_resource type="Texture2D" uid="uid://bcp1jo2afppjg" path="res://Assets/UIElements/PlayerPortaits/Hunter.png" id="6_si3hj"]
+[ext_resource type="AudioStream" uid="uid://bjdwekoi0haqm" path="res://Assets/music/horror-music.mp3" id="9_5exii"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_cebj7")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 0.113725, 1, 0.666667)
+custom_minimum_size = Vector2(600, 0)
+offset_right = 600.0
+offset_bottom = 240.0
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("1_0u8od")
+stretch_mode = 1
+
+[node name="Pointer" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(24, 20)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -52.0
+offset_right = -54.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_d2ds8")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 64
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 0.235294, 0.368627, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_3f0y1")
+theme_override_font_sizes/font_size = 60
+text = "Halloween Shooter"
+
+[node name="ChooseFighterLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_3f0y1")
+theme_override_font_sizes/font_size = 48
+text = "CHOOSE YOUR FIGHTER:"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="FrankieTexture" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(36, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_hpusj")
+
+[node name="WolfieTexture" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(44, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_o81sw")
+
+[node name="WitchTexture" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_guef8")
+
+[node name="HunterTexture" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(44, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_si3hj")
+
+[node name="SelectorPositions" type="Node" parent="."]
+
+[node name="FrankiePosition" type="Marker2D" parent="SelectorPositions"]
+position = Vector2(508, 279)
+
+[node name="WolfiePosition" type="Marker2D" parent="SelectorPositions"]
+position = Vector2(508, 326)
+
+[node name="WitchPosition" type="Marker2D" parent="SelectorPositions"]
+position = Vector2(508, 378)
+
+[node name="HunterPosition" type="Marker2D" parent="SelectorPositions"]
+position = Vector2(508, 430)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5exii")
+volume_db = -20.0
+autoplay = true

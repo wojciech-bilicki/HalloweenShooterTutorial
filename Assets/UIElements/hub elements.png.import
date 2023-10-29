@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://42d4lpinijj8"
+path="res://.godot/imported/hub elements.png-87605921664a519d0fefaf28485db782.res"
+group_file="res://hub_elements_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/UIElements/hub elements.png"
+dest_files=["res://.godot/imported/hub elements.png-87605921664a519d0fefaf28485db782.res"]
+
+[params]
+
+atlas_file="res://hub_elements_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

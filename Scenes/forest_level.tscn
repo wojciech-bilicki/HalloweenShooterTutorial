@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu4eei61rdhgh"]
+
+[ext_resource type="PackedScene" uid="uid://b6ov3fp6vytef" path="res://Scenes/scrolling_background.tscn" id="1_u572h"]
+[ext_resource type="Texture2D" uid="uid://c7rnp72rm6uhu" path="res://Assets/Backgrounds/Skybox Forest.png" id="2_stcxx"]
+[ext_resource type="PackedScene" uid="uid://b0ad3krapvtex" path="res://Scenes/player.tscn" id="3_uvteb"]
+
+[node name="ForestLevel" type="Node"]
+
+[node name="ScrollingBackground" parent="." instance=ExtResource("1_u572h")]
+bg_image = ExtResource("2_stcxx")
+
+[node name="Player" parent="." instance=ExtResource("3_uvteb")]
+position = Vector2(77, 379)

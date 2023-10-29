@@ -1,0 +1,205 @@
+[gd_scene load_steps=20 format=3 uid="uid://b0ad3krapvtex"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_d5mb1"]
+[ext_resource type="Texture2D" uid="uid://beheqyio3208x" path="res://Assets/Player/Horror game player animations.png" id="1_jefhm"]
+[ext_resource type="Script" path="res://Scripts/shooting_system.gd" id="3_h5sdk"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="4_smvmg"]
+[ext_resource type="AudioStream" uid="uid://dv7x2eb2jsebs" path="res://Assets/sounds/shot_sound.wav" id="5_hllpl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwf4q"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrd8t"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq4a1"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4jie"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihriv"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j8wq"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkube"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5vxi"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2sa8"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbpki"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4dm5"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxqm3"]
+atlas = ExtResource("1_jefhm")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtf3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrd8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq4a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4jie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihriv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j8wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkube")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5vxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2sa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbpki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4dm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxqm3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxqm3")
+}],
+"loop": true,
+"name": &"frankie_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbpki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4dm5")
+}],
+"loop": false,
+"name": &"frankie_shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq4a1")
+}],
+"loop": true,
+"name": &"hunter_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwf4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrd8t")
+}],
+"loop": false,
+"name": &"hunter_shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j8wq")
+}],
+"loop": true,
+"name": &"witch_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihriv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihriv")
+}],
+"loop": false,
+"name": &"witch_shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2sa8")
+}],
+"loop": true,
+"name": &"wolfie_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkube")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5vxi")
+}],
+"loop": false,
+"name": &"wolfie_shooting",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jayo"]
+size = Vector2(33, 87)
+
+[node name="Player" type="Area2D"]
+collision_mask = 8
+script = ExtResource("1_d5mb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rtf3h")
+animation = &"wolfie_shooting"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_8jayo")
+
+[node name="ShootingSystem" type="Node2D" parent="."]
+position = Vector2(35, -3)
+script = ExtResource("3_h5sdk")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("4_smvmg")
+health = 11
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hllpl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="ShootingSystem" method="_on_animated_sprite_2d_animation_finished"]

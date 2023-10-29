@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://drvq2pdi1kf0"]
+
+[ext_resource type="PackedScene" uid="uid://b6ov3fp6vytef" path="res://Scenes/scrolling_background.tscn" id="1_aoc80"]
+[ext_resource type="PackedScene" uid="uid://b0ad3krapvtex" path="res://Scenes/player.tscn" id="2_j355l"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="3_evjea"]
+[ext_resource type="PackedScene" uid="uid://cqfhwpgo2qw4g" path="res://Scenes/ui.tscn" id="4_goc60"]
+[ext_resource type="PackedScene" uid="uid://5hoim7b1t443" path="res://Scenes/wave_spawner.tscn" id="5_njult"]
+[ext_resource type="Script" path="res://Scripts/wave.gd" id="6_pdmtu"]
+[ext_resource type="Resource" uid="uid://cufc4cr88s7k6" path="res://Resources/devil_enemy_config.tres" id="7_lbrql"]
+[ext_resource type="Resource" uid="uid://foju4405gl87" path="res://Resources/mummy_enemy_config.tres" id="8_d5nnp"]
+[ext_resource type="Resource" uid="uid://cfrusj1s8dcpq" path="res://Resources/skeleton_enemy_config.tres" id="9_eiqof"]
+[ext_resource type="AudioStream" uid="uid://bjdwekoi0haqm" path="res://Assets/music/horror-music.mp3" id="10_net0j"]
+
+[node name="CastleLevel" type="Node"]
+
+[node name="ScrollingBackground" parent="." instance=ExtResource("1_aoc80")]
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_j355l")]
+position = Vector2(83, 313)
+
+[node name="UI" parent="." instance=ExtResource("4_goc60")]
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("3_evjea")
+
+[node name="WaveSpawner" parent="." node_paths=PackedStringArray("enemy_movement_points") instance=ExtResource("5_njult")]
+position = Vector2(1062, 325)
+enemy_movement_points = [NodePath("../EnemyMovementPoints/TopLeft"), NodePath("../EnemyMovementPoints/TopRight"), NodePath("../EnemyMovementPoints/MidLeft"), NodePath("../EnemyMovementPoints/MidRight"), NodePath("../EnemyMovementPoints/BottomLeft"), NodePath("../EnemyMovementPoints/BottomRight")]
+
+[node name="Wave1" type="Node" parent="WaveSpawner"]
+script = ExtResource("6_pdmtu")
+devil_config = ExtResource("7_lbrql")
+mummy_config = ExtResource("8_d5nnp")
+skeleton_config = ExtResource("9_eiqof")
+devils_count = 1
+mummy_count = 0
+skeleton_count = 0
+
+[node name="Wave2" type="Node" parent="WaveSpawner"]
+script = ExtResource("6_pdmtu")
+devil_config = ExtResource("7_lbrql")
+mummy_config = ExtResource("8_d5nnp")
+skeleton_config = ExtResource("9_eiqof")
+devils_count = 1
+mummy_count = 0
+skeleton_count = 0
+
+[node name="EnemyMovementPoints" type="Node" parent="."]
+
+[node name="TopLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(866, 8)
+
+[node name="TopRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1102, 12)
+
+[node name="MidLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(881, 296)
+
+[node name="MidRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1124, 290)
+
+[node name="BottomLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(855, 618)
+
+[node name="BottomRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1124, 618)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_net0j")
+autoplay = true
