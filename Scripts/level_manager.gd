@@ -11,6 +11,7 @@ const VLAD_BOSS = preload("res://Scenes/vlad_boss.tscn")
 func _ready():
 	ui.set_initial_health(player.get_health())
 	player.player_damaged.connect(on_player_damaged)
+	player.spell_selected.connect(ui.on_spell_selected)
 	wave_spawner.starting_wave.connect(ui.on_wave_started)
 	wave_spawner.waves_finished.connect(on_waves_finished)
 	player.player_died.connect(ui.on_player_died)

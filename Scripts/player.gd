@@ -4,6 +4,7 @@ class_name Player
 
 signal player_damaged(current_health: int)
 signal player_died
+signal spell_selected(spell_number: int)
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -42,6 +43,13 @@ func _input(event):
 		direction = Vector2.RIGHT
 	else:
 		direction = Vector2.ZERO
+	
+	if Input.is_action_just_pressed("select_spell_1"):
+		spell_selected.emit(1)
+	elif Input.is_action_just_pressed("select_spell_2"):
+		spell_selected.emit(2)
+	elif Input.is_action_just_pressed("select_spell_3"):
+		spell_selected.emit(3)
 
 
 func is_withing_screen_bounds(next_position: Vector2):

@@ -8,7 +8,11 @@ class_name UI
 @onready var boss_name = $MarginContainer/BossName
 @onready var label = %Label
 @onready var game_over_container = $MarginContainer/GameOverContainer
-
+@onready var spell_containers = [
+	$MarginContainer/HBoxContainer/IcePanel,
+	$MarginContainer/HBoxContainer/FirePanel,
+	$MarginContainer/HBoxContainer/PoisonPanel
+] 
 
 const LIFE_FULL_UI = preload("res://Assets/UIElements/LifeFullUI.png")
 const LIFE_HALF_UI = preload("res://Assets/UIElements/LifeHalfUI.png")
@@ -59,3 +63,6 @@ func on_player_died():
 	
 func _on_button_pressed():
 	get_tree().reload_current_scene()
+	
+func on_spell_selected(spell_number: int):
+	print(spell_number)

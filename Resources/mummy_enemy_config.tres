@@ -7,6 +7,9 @@
 
 [resource]
 script = ExtResource("1_r1sb5")
+projectile_speed = 200.0
+speed = 100.0
+health = 6
 projectile_collision_shape = ExtResource("2_6gggb")
 projectile_texture = ExtResource("3_7dbhp")
 enemy_name = "mummy"

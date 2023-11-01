@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://jemkg1xs1aw4"]
+[gd_scene load_steps=20 format=3 uid="uid://jemkg1xs1aw4"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_okpwi"]
 [ext_resource type="Texture2D" uid="uid://bctpeupeq763a" path="res://Assets/Enemies/Devil/DevilIdle.png" id="1_s1oya"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cu2wocwlgwecx" path="res://Assets/Enemies/Skeleton/SkeletonShooting.png" id="11_5nhmq"]
 [ext_resource type="Script" path="res://Scripts/random_timer.gd" id="12_mgx1q"]
 [ext_resource type="Script" path="res://Scripts/enemy_shooting_system.gd" id="13_13len"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="15_h1wny"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqt36"]
 animations = [{
@@ -89,6 +90,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvuw8"]
 size = Vector2(66, 135)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u34rr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbeu7"]
+bg_color = Color(0.784314, 0, 0.231373, 1)
+
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
 collision_mask = 4
@@ -112,6 +119,19 @@ one_shot = true
 script = ExtResource("12_mgx1q")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -36.0
+offset_top = -81.0
+offset_right = 14.0
+offset_bottom = -71.0
+theme_override_styles/background = SubResource("StyleBoxFlat_u34rr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xbeu7")
+value = 50.0
+show_percentage = false
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("15_h1wny")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
