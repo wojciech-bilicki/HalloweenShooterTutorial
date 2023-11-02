@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://idblyfgklvrm"]
+
+[ext_resource type="Script" path="res://Scripts/spell_effector.gd" id="1_77fm0"]
+
+[node name="SpellEffector" type="Node"]
+script = ExtResource("1_77fm0")
+
+[node name="SpellTimer" type="Timer" parent="."]
+one_shot = true

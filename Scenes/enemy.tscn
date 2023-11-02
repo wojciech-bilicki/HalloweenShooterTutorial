@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://jemkg1xs1aw4"]
+[gd_scene load_steps=21 format=3 uid="uid://jemkg1xs1aw4"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_okpwi"]
 [ext_resource type="Texture2D" uid="uid://bctpeupeq763a" path="res://Assets/Enemies/Devil/DevilIdle.png" id="1_s1oya"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/random_timer.gd" id="12_mgx1q"]
 [ext_resource type="Script" path="res://Scripts/enemy_shooting_system.gd" id="13_13len"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="15_h1wny"]
+[ext_resource type="PackedScene" uid="uid://idblyfgklvrm" path="res://Scenes/spell_effector.tscn" id="16_ijdqa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqt36"]
 animations = [{
@@ -98,7 +99,7 @@ bg_color = Color(0.784314, 0, 0.231373, 1)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 22
 script = ExtResource("1_okpwi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -132,6 +133,8 @@ show_percentage = false
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("15_h1wny")
+
+[node name="SpellEffector" parent="." instance=ExtResource("16_ijdqa")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

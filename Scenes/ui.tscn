@@ -1,16 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqfhwpgo2qw4g"]
+[gd_scene load_steps=11 format=3 uid="uid://cqfhwpgo2qw4g"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_g3f70"]
 [ext_resource type="FontFile" uid="uid://d370phyelf2v8" path="res://Assets/font/font.otf" id="2_i2rha"]
 [ext_resource type="Texture2D" uid="uid://cbgrtclp47nk" path="res://Assets/Spells/ice-effect.png" id="3_cihgj"]
 [ext_resource type="Texture2D" uid="uid://b3ys6cg7ej2y0" path="res://Assets/Spells/fire-effect.png" id="4_cwl5h"]
 [ext_resource type="Texture2D" uid="uid://dtfvs0ofa37hg" path="res://Assets/Spells/poison-effect.png" id="5_8v2gs"]
-[ext_resource type="Theme" uid="uid://caw1c6qqfkp3b" path="res://spell_selection.theme" id="7_h83c7"]
+[ext_resource type="Theme" uid="uid://cw30mm6xogocp" path="res://spell_selection.theme" id="7_h83c7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvtlr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1m4i"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0rdu"]
+bg_color = Color(0.658824, 0.145098, 0.290196, 0.4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvss6"]
 bg_color = Color(0.705882, 0.054902, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvtlr"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_g3f70")
@@ -24,7 +30,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 48
 
 [node name="HealthContainer" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -40,19 +46,6 @@ theme_override_fonts/font = ExtResource("2_i2rha")
 theme_override_font_sizes/font_size = 32
 text = "Wave 0 of 2"
 
-[node name="BossHealthBar" type="ProgressBar" parent="MarginContainer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_uvss6")
-show_percentage = false
-
-[node name="BossName" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_i2rha")
-text = "VLAD"
-
 [node name="GameOverContainer" type="CenterContainer" parent="MarginContainer"]
 visible = false
 layout_mode = 2
@@ -62,6 +55,7 @@ size_flags_vertical = 4
 [node name="Panel" type="Panel" parent="MarginContainer/GameOverContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme = ExtResource("7_h83c7")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rvtlr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/GameOverContainer/Panel"]
@@ -109,6 +103,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
+theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/IcePanel/VBoxContainer"]
 layout_mode = 2
@@ -121,7 +116,21 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource("3_cihgj")
+
+[node name="IceProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/IcePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i1m4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u0rdu")
+step = 1.0
+page = 1.0
+fill_mode = 3
+show_percentage = false
 
 [node name="FirePanel" type="Panel" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -130,17 +139,13 @@ theme = ExtResource("7_h83c7")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/FirePanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -15.0
-offset_right = 6.0
-offset_bottom = 15.0
+offset_left = -15.0
+offset_right = 15.0
+offset_bottom = 46.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/FirePanel/VBoxContainer2"]
 layout_mode = 2
@@ -155,6 +160,19 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("4_cwl5h")
 
+[node name="FireProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/FirePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i1m4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u0rdu")
+step = 1.0
+page = 1.0
+fill_mode = 3
+show_percentage = false
+
 [node name="PoisonPanel" type="Panel" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -162,17 +180,13 @@ theme = ExtResource("7_h83c7")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PoisonPanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -15.0
-offset_right = 7.0
-offset_bottom = 15.0
+offset_left = -15.0
+offset_right = 15.0
+offset_bottom = 46.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PoisonPanel/VBoxContainer3"]
 layout_mode = 2
@@ -185,5 +199,48 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("5_8v2gs")
+
+[node name="PoisonProgessBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PoisonPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i1m4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u0rdu")
+step = 1.0
+page = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_top = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="BossHealthBar" type="ProgressBar" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_uvss6")
+show_percentage = false
+
+[node name="BossName" type="Label" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_i2rha")
+text = "VLAD"
 
 [connection signal="pressed" from="MarginContainer/GameOverContainer/Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]

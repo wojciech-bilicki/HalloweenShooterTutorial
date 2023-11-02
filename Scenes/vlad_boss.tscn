@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcugnwrirear0"]
+[gd_scene load_steps=18 format=3 uid="uid://dcugnwrirear0"]
 
 [ext_resource type="Script" path="res://Scripts/vlad_boss.gd" id="1_4n1db"]
 [ext_resource type="Texture2D" uid="uid://m1je1wjsds57" path="res://Assets/Enemies/Vlad/VladBlocking1.png" id="2_x8q6n"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cktfakakkaia3" path="res://Assets/Enemies/SmokeFX/FX001_05.png" id="12_d5hwl"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="13_18vrp"]
 [ext_resource type="Script" path="res://Scripts/random_timer.gd" id="14_e4qj1"]
+[ext_resource type="PackedScene" uid="uid://idblyfgklvrm" path="res://Scenes/spell_effector.tscn" id="15_im82a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_li65c"]
 animations = [{
@@ -76,7 +77,7 @@ size = Vector2(67, 237)
 
 [node name="VladBoss" type="Area2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 22
 script = ExtResource("1_4n1db")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -100,6 +101,8 @@ min_time = 2.0
 max_time = 3.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SpellEffector" parent="." instance=ExtResource("15_im82a")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -5,11 +5,13 @@ class_name Player
 signal player_damaged(current_health: int)
 signal player_died
 signal spell_selected(spell_number: int)
+signal spell_casted(spell_index: int, timeout: float)
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var shooting_system = $ShootingSystem
 @onready var health_system = $HealthSystem as HealthSystem
+@onready var spell_system = $SpellSystem
 
 
 @export var speed = 400
@@ -22,6 +24,14 @@ func _ready():
 	animated_sprite_2d.play("%s_default" % animation_prefix)
 	shooting_system.animation_prefix = animation_prefix
 	health_system.died.connect(on_died)
+	spell_system.spell_selected.connect(on_spell_selected)
+	spell_system.spell_casted.connect(on_spell_casted)
+
+func on_spell_casted(spell_index: int, timeout: float):
+	spell_casted.emit(spell_index, timeout)
+
+func on_spell_selected(spell_index: int):
+	spell_selected.emit(spell_index)
 
 func _process(delta):
 
@@ -44,12 +54,7 @@ func _input(event):
 	else:
 		direction = Vector2.ZERO
 	
-	if Input.is_action_just_pressed("select_spell_1"):
-		spell_selected.emit(1)
-	elif Input.is_action_just_pressed("select_spell_2"):
-		spell_selected.emit(2)
-	elif Input.is_action_just_pressed("select_spell_3"):
-		spell_selected.emit(3)
+
 
 
 func is_withing_screen_bounds(next_position: Vector2):

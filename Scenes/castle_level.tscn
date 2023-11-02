@@ -35,6 +35,7 @@ skeleton_config = ExtResource("9_eiqof")
 devils_count = 1
 mummy_count = 0
 skeleton_count = 0
+time_between_enemy_spawns = 1.0
 
 [node name="Wave2" type="Node" parent="WaveSpawner"]
 script = ExtResource("6_pdmtu")
@@ -66,5 +67,7 @@ position = Vector2(855, 618)
 position = Vector2(1124, 618)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 4
 stream = ExtResource("10_net0j")
+volume_db = -80.0
 autoplay = true

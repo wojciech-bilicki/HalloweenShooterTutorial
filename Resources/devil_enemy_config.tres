@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("1_dhie7")
 projectile_speed = 350.0
-speed = 350.0
-health = 3
+speed = 200.0
+health = 4
 projectile_collision_shape = ExtResource("2_sk1te")
 projectile_texture = ExtResource("3_jxah7")
 enemy_name = "devil"

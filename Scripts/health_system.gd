@@ -7,7 +7,8 @@ signal damaged
 
 @export var health = 20
 
-func damage(damage_taken: int):
+func damage(damage_taken: float):
+	print_debug(damage_taken)
 	health -= damage_taken
 	
 	damaged.emit()

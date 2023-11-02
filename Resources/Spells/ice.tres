@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bsyt7ucg8wxsf"]
+
+[ext_resource type="Shape2D" uid="uid://yyr4fu4rhe8s" path="res://Resources/CollisionShapes/Spells/ice.tres" id="1_jlxk3"]
+[ext_resource type="Script" path="res://Scripts/spell_config.gd" id="2_70p8s"]
+[ext_resource type="Texture2D" uid="uid://cbgrtclp47nk" path="res://Assets/Spells/ice-effect.png" id="3_6hfr3"]
+
+[resource]
+script = ExtResource("2_70p8s")
+speed = 300.0
+texture = ExtResource("3_6hfr3")
+collision_shape = ExtResource("1_jlxk3")
+refresh_time = 4.0
+type = 0
+effect_duration = 2.0
+damage = 2

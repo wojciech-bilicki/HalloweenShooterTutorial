@@ -29,6 +29,7 @@ var phase = Phase.ONE
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var action_timer = $ActionTimer
 @onready var audio_stream_player = $AudioStreamPlayer
+@onready var spell_effector = $SpellEffector
 
 const HOMING_BAT = preload("res://Scenes/homing_bat.tscn")
 const ENEMY_PROJECTILE = preload("res://Scenes/enemy_projectile.tscn")
@@ -75,8 +76,9 @@ func on_damaged():
 	if health_system.health == 10:
 		trigger_second_phase()
 	
-	audio_stream_player.stream = sounds.pick_random()
-	audio_stream_player.play()
+	if spell_effector.is_poisoned == false:
+		audio_stream_player.stream = sounds.pick_random()
+		audio_stream_player.play()
 
 func trigger_second_phase():
 	phase = Phase.TWO
@@ -122,12 +124,25 @@ func teleport():
 	animated_sprite_2d.play("teleport")	
 
 func _on_area_entered(area):
+	
 	if is_blocking:
 		return
-	var blink_tween = get_tree().create_tween()
-	blink_tween.tween_property(animated_sprite_2d, "modulate", Color.RED, .25)
-	blink_tween.chain().tween_property(animated_sprite_2d, "modulate", Color.WHITE, .25)
-	health_system.damage(1)
+		
+	if area is Projectile:
+		var blink_tween = get_tree().create_tween()
+		blink_tween.tween_property(animated_sprite_2d, "modulate", Color.RED, .25)
+		blink_tween.chain().tween_property(animated_sprite_2d, "modulate", Color.WHITE, .25)
+		health_system.damage(1)
+	
+	if area is Spell:
+		
+		area.queue_free()
+		var spell_type = (area as Spell).type
+		var damage = (area as Spell).damage
+		health_system.damage(damage)
+		var effect_duration = (area as Spell).effect_duration
+		
+		spell_effector.on_spell_hit(spell_type, effect_duration)
 
 
 func _on_action_timer_timeout():

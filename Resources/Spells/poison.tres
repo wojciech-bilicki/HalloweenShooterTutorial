@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dauubwtp5xuma"]
+
+[ext_resource type="Shape2D" uid="uid://bswt5au46t4np" path="res://Resources/CollisionShapes/Spells/poison.tres" id="1_3r05e"]
+[ext_resource type="Script" path="res://Scripts/spell_config.gd" id="2_q73vm"]
+[ext_resource type="Texture2D" uid="uid://dtfvs0ofa37hg" path="res://Assets/Spells/poison-effect.png" id="3_fvqjs"]
+
+[resource]
+script = ExtResource("2_q73vm")
+speed = 300.0
+texture = ExtResource("3_fvqjs")
+collision_shape = ExtResource("1_3r05e")
+refresh_time = 5.0
+type = 2
+effect_duration = 2.0
+damage = 1

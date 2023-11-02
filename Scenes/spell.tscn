@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyhaclb6wdnfc"]
+
+[ext_resource type="Texture2D" uid="uid://dtfvs0ofa37hg" path="res://Assets/Spells/poison-effect.png" id="1_8237n"]
+[ext_resource type="Script" path="res://Scripts/spell.gd" id="1_xgftf"]
+[ext_resource type="Shape2D" uid="uid://bswt5au46t4np" path="res://Resources/CollisionShapes/Spells/poison.tres" id="2_h7hai"]
+
+[node name="Spell" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_xgftf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_8237n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = ExtResource("2_h7hai")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

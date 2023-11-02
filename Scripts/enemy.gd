@@ -19,6 +19,7 @@ var sounds = [
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var health_system = $HealthSystem
 @onready var progress_bar = $ProgressBar
+@onready var spell_effector = $SpellEffector as SpellEffector
 
 
 @export var speed = 250
@@ -73,9 +74,24 @@ func _on_area_entered(area):
 	if area is Projectile:
 		health_system.damage(1)
 		area.queue_free()
+	
+	if area is Spell:
+		
+		area.queue_free()
+		var spell_type = (area as Spell).type
+		var damage = (area as Spell).damage
+		health_system.damage(damage)
+		var effect_duration = (area as Spell).effect_duration
+		
+		spell_effector.on_spell_hit(spell_type, effect_duration)
+	
+	if area is Enemy && spell_effector.is_burning:
+		area.health_system.damage(1)
+	
 
 func on_damaged():
-	audio_stream_player.play()
+	if spell_effector.is_poisoned == false:
+		audio_stream_player.play()
 	progress_bar.value = health_system.health
 
 func on_sound_finished():
